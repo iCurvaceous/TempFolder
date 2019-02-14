@@ -4,13 +4,13 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
 //Load User Model
-require('../models/user_model');
+require('./models/user_model');
 var User = mongoose.model('UserList');
 
 //route to register user
-//router.get('/register', function(req,res){
-//    res.render('register');
-//});
+router.get('/register', function(req,res){
+    res.render('register');
+});
 
 router.post('/register', function(req,res){
     //reminder: function(req,res) is a callback function

@@ -59,8 +59,7 @@ var BugSchema = new Schema({
     },
 
     assigned_user:{
-        type:String,
-        default:author
+        type:String
     },
 
     date_assigned:{

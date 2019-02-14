@@ -2,7 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-var User = mongoose.model('user_model');
+var User = mongoose.model('UserList');
 
 module.exports = function(passport){
     passport.use(new LocalStrategy({usernameField:'email'},function(email, password, done){

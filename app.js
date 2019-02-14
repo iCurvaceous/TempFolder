@@ -54,6 +54,20 @@ app.use(passport.session());
 //---------------------------------------------------------
 
 
+//MODELS--------------------------------------------------
+//Load in Entry Model
+require('./models/bug_model');
+require('./models/project_model');
+require('./models/report_model');
+require('./models/user_model');
+
+var Entry = mongoose.model('BugList');
+var Users = mongoose.model('ReportList');
+var Users = mongoose.model('Users');
+var Entry = mongoose.model('Entries');
+//---------------------------------------------------------
+
+
 // MAIN ROUTES -----------------------------------------
 
 //Route to index

@@ -1,0 +1,57 @@
+<div class="container px-lg-5">
+    <br>
+    <div class="row justify-content-center">
+        <h1>Let's Get Started!</h1>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <form action="/users/register" method="POST">
+            <h5>Company Information</h5>
+            <div class="col py-3 px-lg-5 border bg-light">
+                <div class="form-group">
+                    <label for="companyInputName">Company Name</label>
+                    <input type="text" class="form-control" id="companyInputName" placeholder="Enter Company Name"
+                        name="company_name" value="{{company_name}}" required>
+                </div>
+            </div>
+            <br>
+            <h5>User Information</h5>
+            <div class="col py-3 px-lg-5 border bg-light">
+                <div class="form-group">
+                    <label for="userInputFName">First Name</label>
+                    <input type="text" class="form-control" id="userInputFName" placeholder="Enter First Name"
+                        name="company_name" value="{{first_name}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="userInputLName">Last Name</label>
+                    <input type="text" class="form-control" id="userInputLName" placeholder="Enter Last Name"
+                        name="company_name" value="{{last_name}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="userInputEmail">Email Address</label>
+                    <input type="email" class="form-control" id="userInputEmail" aria-describedby="emailHelp"
+                        placeholder="Enter Email Address" name="email" value="{{email}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="userInputUsername">Username</label>
+                    <input type="text" class="form-control" id="userInputUsername" placeholder="Enter Professional Nickname"
+                        name="company_name" value="{{username}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="userInputPassword1">Enter Password</label>
+                    <input type="password" class="form-control" name="password" id="exampleInputPassword1"
+                        placeholder="Enter Password" value="{{password1}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Confirm Password</label>
+                    <input type="password" class="form-control" name="password2" id="exampleInputPassword2"
+                        placeholder="Confirm Password" value="{{password2}}" required>
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign-Up</button>
+            <br>
+            <br>
+        </form>
+    </div>
+</div>

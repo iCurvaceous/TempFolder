@@ -19,10 +19,6 @@ var ReportSchema = new Schema({
         type:String,
         required:true
     },
-    phase:{
-        type:String,
-        required:true
-    },
     status:{
         type:String,
         required:true

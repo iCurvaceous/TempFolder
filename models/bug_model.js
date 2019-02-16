@@ -77,6 +77,11 @@ var BugSchema = new Schema({
         default:Date.now
     },
 
+    priority:{
+        type:String,
+        required:true
+    },
+
     //provided data---------------------
     phase:{
         type:String,

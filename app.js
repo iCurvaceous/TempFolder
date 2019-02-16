@@ -179,7 +179,6 @@ router.post('/adduser', function(req,res,next){
     console.log(res);
 });
 
-
 //------------------------------------------------------
 
 

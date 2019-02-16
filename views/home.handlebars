@@ -8,7 +8,87 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModalCenter">
                     Logout
                 </button>
+
             </div>
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card-body">
+            <div class= "jumbotron text-centered">
+                <h1>Projects List</h1>
+                <p>These are the current projects.</p>
+                <ul class="list-group list-group-flush"></ul>
+                {{#each project_entry}}
+                <div class='project_entry'>
+                <li class="list-group-item">
+                    <p class="font-weight-bold">Project Name: {{name}}</p>
+                    <p>Description of Project: {{desc}}</p>
+                    <p>Production Phase: {{phase}}</p>
+                    <p>Status: {{status}}</p>
+                    <p>Author: {{user}}</p>
+                    <p>Company: {{company}}</p>
+                    <p>Creation Date: {{date}}</p>
+                    <!--<a href='/gameentries/edit/{{id}}' class="btn btn-warning mb-3">Edit</a>
+                    <form method="POST" action="/{{id}}?_method=Delete"> -->
+                        <!--<input type ="submit" value="Edit" class="btn btn-warning">-->
+                       <!-- <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form> -->
+                </li>
+                </div>
+                <br>
+                {{else}}
+                <p>There are no project entries.</p>
+                {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<!--
+<div class="modal fade" id="EditProjectModalCenter" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalCenterTitle">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"> -->
+                <!-- Content Here -->
+ <!--               <form action="/edit" method="POST">
+                    <div class="form-group">
+                        <label for="userInputEmail">Email address</label>
+                        <input type="email" class="form-control" id="userInputEmail" aria-describedby="emailHelp"
+                            placeholder="Enter Email Address" name="email" value="{{user_email}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="userInputPassword1" placeholder="Enter Password"
+                        name="password" value="{{password}}" required>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                    </div>
+                    <p>Not a user?<a href="/register"> Sign Up</a></p>
+                    <p>Forgot <a href="/forgotpass">Password?</a></p>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-off"></span>
+                    Login</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+-->

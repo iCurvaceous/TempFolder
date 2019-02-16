@@ -12,9 +12,10 @@ router.get('/register', function(req,res){
     res.render('register');
 });
 
-router.post('/register', function(req,res){
+router.post('/newuser', function(req,res){
     //reminder: function(req,res) is a callback function
     var errors = [];
+   
 
     if(req.body.password != req.body.password2){
         errors.push({text:"Passwords do not match"});
@@ -25,7 +26,7 @@ router.post('/register', function(req,res){
     }
 
     if(errors.length > 0){
-        res.render('/register',{
+        res.render('register',{
             errors:errors,
             company_name:req.body.company_name,
             first_name:req.body.first_name,
@@ -36,11 +37,11 @@ router.post('/register', function(req,res){
             password2:req.body.password2
         });
     } else {
-        User.findOne({user_email:req.body.user_email})
+        User.findOne({email:req.body.email})
         .then(function(user){
             if(user){
             //add flash message that user exists
-            res.redirect('/register');
+            res.redirect('/project');
             } else {
                 var newUser = new User({
                     company_name:req.body.company_name,
@@ -48,7 +49,8 @@ router.post('/register', function(req,res){
                     last_name:req.body.last_name,
                     username:req.body.username,
                     email:req.body.email,
-                    password:req.body.password
+                    password:req.body.password,
+                    group:"Creator"
                 });
 
                 bcrypt.genSalt(10,function(err, salt){
@@ -58,7 +60,6 @@ router.post('/register', function(req,res){
                         newUser.save()
                         .then(function(user){
                             res.redirect('/home');
-                            $('#loginModalCenter').modal('show'); //opens login modal-javascript
                         }).catch(function(err){
                         console.log(err);
                         return;
@@ -74,7 +75,8 @@ router.post('/register', function(req,res){
     var newUser = {
         name:req.body.name,
         email:req.body.email,
-        password:req.body.password
+        password:req.body.password,
+        group:"Creator"
     }
     new User(newUser)
     .save().then(function(user){

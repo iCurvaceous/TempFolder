@@ -5,11 +5,15 @@
                 <h1>Projects List</h1>
                 <p>These are the current projects.</p>
                 <ul class="list-group list-group-flush"></ul>
-                <div class='entries'>
+                {{#each project_entry}}
+                <div class='project_entry'>
                 <li class="list-group-item">
-                    <p class="font-weight-bold">Project Name: {{projectName}}</p>
-                    <p>Description of Project: {{description}}</p>
-                    <p>Date: {{date}}</p>
+                    <p class="font-weight-bold">Project Name: {{name}}</p>
+                    <p>Description of Project: {{desc}}</p>
+                    <p>Production Phase: {{phase}}</p>
+                    <p>Status: {{status}}</p>
+                    <p>Company: {{company}}</p>
+                    <p>Creation Date: {{date}}</p>
                     <!--<a href='/gameentries/edit/{{id}}' class="btn btn-warning mb-3">Edit</a>
                     <form method="POST" action="/{{id}}?_method=Delete"> -->
                         <!--<input type ="submit" value="Edit" class="btn btn-warning">-->
@@ -19,7 +23,168 @@
                 </li>
                 </div>
                 <br>
+                {{else}}
+                <p>There are no project entries.</p>
+                {{/each}}
                 </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddProjectModalCenter">
+  Add Project
+</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddBugModalCenter">
+  Add Bug
+</button>
+<!-- ADD PROJECT Modal -->
+<div class="modal fade" id="AddProjectModalCenter" tabindex="-1" role="dialog" aria-labelledby="AddProjectModalCenter"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddProjectModalCenterTitle">Add Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Content Here -->
+                <form class="form-group" action="/addproject" method="POST">
+                <h3>Enter Your Game Here</h3>
+                <label>Project Name</label>
+                <input type="text" name="name" required>
+                <br>
+                <label>Company</label>
+                <input type="text" name="company" required>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="phase">Phase</label>
+                    </div>
+                    <select class="custom-select" id="phase" name="phase">
+                        <option selected>Choose...</option>
+                        <option value="Initiation">Initiation</option>
+                        <option value="Pre-Production">Pre-Production</option>
+                        <option value="Testing">Testing</option>
+                        <option value="Production">Production</option>
+                        <option value="Beta">Beta</option>
+                        <option value="Release">Release</option>
+                        
+                    </select>
+                </div>
+        
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="status">Status</label>
+                    </div>
+                    <select class="custom-select" id="status" name="status" required>
+                        <option selected>Choose...</option>
+                        <option value="1">Open</option>
+                        <option value="2">At Risk</option>
+                        <option value="3">Healthy</option>
+                        <option value="4">Under</option>
+                        <option value="5">Closed</option>
+                    </select>
+                </div>
+                <label>Description of Project</label>
+                <br>
+                <textarea name="desc" class="form-control" required></textarea>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-off"></span>
+                    Add Project</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ADD BUG Modal -->
+<div class="modal fade" id="AddBugModalCenter" tabindex="-1" role="dialog" aria-labelledby="AddBugModalCenter"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddBugModalCenterTitle">Add Bug</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Content Here -->
+                <form class="form-group" action="/addbug" method="POST">
+                    <h3>Enter Your Bug Here</h3>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="name">Project Name</label>
+                        </div>
+                        <select class="custom-select" id="name" name="name" required>
+                            <option selected>Choose...</option>
+                            {{#each project_entry}}
+                            <option value="{{name}}">{{name}}</option>
+                            {{else}}
+
+                            {{/each}}
+                        </select>
+                    </div>
+                    <label>Test Conditons</label>
+                    <br>
+                    <label>Game Section</label>
+                    <br>
+                    <label>Test Environment</label>
+                    <br>
+                    <label>Procedure:</label>
+                        <br>
+                        <label>Function Tested</label>
+                        <br>
+                        <label>Tester Action</label>
+                        <br>
+                        <label>Expected Result</label>
+                        <br>
+                        <textarea name="desc" class="form-control" required></textarea>
+                        <br>
+                        <label>Actual Result</label>
+                        <br>
+                        <textarea name="desc" class="form-control" required></textarea>
+                        <br>
+                    <label>Company</label>
+                    <input type="text" name="company" required>
+                    <br>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Status</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01" name="status" required>
+                            <option selected>Choose...</option>
+                            <option value="1">Open</option>
+                            <option value="2">At Risk</option>
+                            <option value="3">Healthy</option>
+                            <option value="4">Under</option>
+                            <option value="5">Closed</option>
+                        </select>
+                    </div>
+                    <label>Test Values</label>
+                    <label>System Version</label>
+                    <label>Build Version</label>
+                    <label>Script File</label>
+                    <br>
+                    <label>Description of Bug</label>
+                    <br>
+                    <textarea name="desc" class="form-control" required></textarea>
+                    <br>
+                    <label>Score</label>
+                    
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success btn-lg btn-block"><span
+                        class="glyphicon glyphicon-off"></span>
+                    Add Bug</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
             </div>
         </div>
     </div>

@@ -62,10 +62,10 @@ require('./models/project_model');
 require('./models/report_model');
 require('./models/user_model');
 
-var Bugs = mongoose.model('BugList');
-var Reports = mongoose.model('ReportList');
+var Bug = mongoose.model('BugList');
+var Report = mongoose.model('ReportList');
 var Users = mongoose.model('UserList');
-var Projects = mongoose.model('ProjectList');
+var Project = mongoose.model('ProjectList');
 //---------------------------------------------------------
 
 
@@ -116,10 +116,6 @@ router.get('/help', function(req,res){
     res.render('help');
 });
 
-router.get('/project', function(req,res){
-    res.render('project');
-});
-
 router.get('/logout', function(req, res){
     req.logout();
     res.redirect();
@@ -128,18 +124,20 @@ router.get('/logout', function(req, res){
 
 
 //ACTION------------------------------------------------CHECK
-app.get('/getdata', function(req, res){
+
+//sending data to project page
+app.get('/project', function(req, res){
     console.log("request made from fetch.");
-    Entry.find({})
-    .then(function(entries){
-        res.send({
-            entries:entries
-        })
-    })
+    Project.find({})
+    .then(function(project_entry){
+        res.render('project', {
+            project_entry:project_entry
+        });
+    });
 });
 
-//post from on index.html
-app.post('/', function(req,res){
+//create from on project page
+app.post('/addproject', function(req,res){
     console.log(req.body);
     var newProject = {
         name:req.body.name,
@@ -149,10 +147,39 @@ app.post('/', function(req,res){
         status:req.body.status,
     }
     new Project(newProject)
-    .save().then(function(entry){
-        res.redirect('/')
+    .save().then(function(project_entry){
+        res.redirect('/project')
     });
 });
+
+//create from on bug
+app.post('/addbug', function(req,res){
+    console.log(req.body);
+    var newBug = {
+        //test_num:,
+        category:req.body.category,
+        phase:req.body.phase,
+        project:req.body.name,
+        author:req.body.author,
+        company:req.body.company
+
+    }
+    new Bug(newBug)
+    .save().then(function(bug_entry){
+        res.redirect('/bug')
+    });
+});
+
+//login from on _navbar
+router.post('/adduser', function(req,res,next){
+    passport.authenticate('local', {
+        successRedirect:'/home',
+        failureRedirect:'/'
+    })(req,res,next);
+    console.log(res);
+});
+
+
 //------------------------------------------------------
 
 
@@ -163,16 +190,17 @@ app.use('/', router);
 app.use(express.static(__dirname+'/views'));
 app.use('/user_app',users);
 
+app.listen(port, function(){
+    console.log("Server is running on Port " + port);
+});
+
 //------------------------------------------------------
 
 
 //ERROR HANDLER-----------------------------------------
 
 //starts server
-app.listen(port, function(){
-    console.log("Server is running on Port " + port);
-});
-
+/*
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -201,5 +229,5 @@ if (app.get('env') === 'development') {
       error: {}
     });
   });
-
+*/
   //--------------------------------------------------

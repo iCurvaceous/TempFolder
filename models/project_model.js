@@ -14,10 +14,6 @@ var ProjectSchema = new Schema({
         type:String,
         required:true
     },
-    user:{
-        type:String,
-        required:true
-    },
     phase:{
         type:String,
         required:true

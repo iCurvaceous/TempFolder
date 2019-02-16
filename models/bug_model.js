@@ -23,11 +23,21 @@ var BugSchema = new Schema({
         type:String,
         required:true
     },
-    procedure:{
-        function_tested:{type:String,required:true},
-        tester_action:{type:String,required:true},
-        expected_result:{type:String,required:true},
-        actual_result:{type:String,required:true}
+    function_tested:{
+        type:String,
+        required:true
+    },
+    tester_action:{
+        type:String,
+        required:true
+    },
+    expected_result:{
+        type:String,
+        required:true
+    },
+    actual_result:{
+        type:String,
+        required:true
     },
     test_values:{
         type:String,

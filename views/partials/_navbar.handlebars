@@ -83,12 +83,12 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
-</nav>
+
 
 <!-- Modal -->
 <div class="modal fade" id="loginModalCenter" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalCenterTitle">Login</h5>
@@ -98,7 +98,7 @@
             </div>
             <div class="modal-body">
                 <!-- Content Here -->
-                <form>
+                <form action="/partials/_navbar" method="POST">
                     <div class="form-group">
                         <label for="userInputEmail">Email address</label>
                         <input type="email" class="form-control" id="userInputEmail" aria-describedby="emailHelp"
@@ -115,14 +115,15 @@
                     </div>
                     <p>Not a user?<a href="/register"> Sign Up</a></p>
                     <p>Forgot <a href="/forgotpass">Password?</a></p>
-                </form>
+                
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-off"></span>
                     Login</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+                </form>
             </div>
         </div>
     </div>
 </div>
+</nav>

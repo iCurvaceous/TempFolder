@@ -26,6 +26,10 @@ var UserSchema = new Schema({
         type:String,
         required:true
     },
+    group:{
+        type:String,
+        default:"Programmer"
+    },
     date:{
         type:Date,
         default:Date.now
